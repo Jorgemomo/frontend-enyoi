@@ -1,7 +1,8 @@
-import "./assets/css/App.css";
+import React from "react";
+
 import { useState, useEffect } from "react";
 
-function App() {
+const Home = () => {
   const [result, setResult] = useState(0);
   const [operation, setOperation] = useState(false);
   const [resultMulti, setResultMulti] = useState(0);
@@ -28,7 +29,7 @@ function App() {
   }, [operation, result]);
 
   return (
-    <div className="App">
+    <>
       <h1 className="text-3xl font-bold underline">Hello world!</h1>
       <h2>Result: {result}</h2>
       <h2>Result multi: {resultMulti}</h2>
@@ -37,8 +38,8 @@ function App() {
       <button onClick={fnRestar}>Restar</button>
       <br></br>
       <button onClick={fnMultiplicar}>Multiplicar</button>
-    </div>
+    </>
   );
-}
+};
 
-export default App;
+export default Home;
