@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { AuthContext } from "../../auth/AuthContext";
+import { useNavigate } from "react-router-dom";
+
 import Swal from "sweetalert2";
 
 import { post } from "../../httprequest/httprequest";
@@ -9,8 +12,15 @@ const LoginForm = () => {
 
   const url = process.env.REACT_APP_API_BASE_URL;
 
+  const { signin } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const cbRedirect = () => {
+    navigate("/quotes");
+  };
+
   const cbResponse = (response) => {
-    console.log("***********", response);
+    // console.log("***********", response);
     if (
       response === "EL usuario no existe" ||
       response === "El password  es incorrecto"
@@ -25,6 +35,7 @@ const LoginForm = () => {
       });
     } else {
       localStorage.setItem("userInfo", JSON.stringify(response));
+      signin(response, cbRedirect);
 
       Swal.fire({
         position: "top-end",
