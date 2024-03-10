@@ -1,11 +1,15 @@
 import React from "react";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+
+import { AuthContext } from "../auth/AuthContext";
 
 const Home = () => {
   const [result, setResult] = useState(0);
   const [operation, setOperation] = useState(false);
   const [resultMulti, setResultMulti] = useState(0);
+
+  const user = useContext(AuthContext);
 
   const fnSumar = () => {
     setResult(result + 1);
@@ -28,9 +32,11 @@ const Home = () => {
     }
   }, [operation, result]);
 
+  console.log(user);
+
   return (
     <>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+      <h1 className="text-3xl font-bold underline">Hello {user.user}</h1>
       <h2>Result: {result}</h2>
       <h2>Result multi: {resultMulti}</h2>
       <button onClick={fnSumar}>Sumar</button>
