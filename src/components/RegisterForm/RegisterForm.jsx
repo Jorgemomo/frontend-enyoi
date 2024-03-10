@@ -63,7 +63,7 @@ const RegisterForm = () => {
           placeholder="Dirección"
         />
 
-        <label>Email</label>
+        <label>Correo</label>
         <input
           className="border-2 border-gray-500 row-span-2 h-12 mb-5 p-2 rounded"
           type="email"

@@ -10,28 +10,34 @@ const LoginForm = () => {
   const url = process.env.REACT_APP_API_BASE_URL;
 
   const cbResponse = (response) => {
-    if (response.message === "User created sucessfully") {
+    console.log("***********", response);
+    if (
+      response === "EL usuario no existe" ||
+      response === "El password  es incorrecto"
+    ) {
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "Oops...",
+        text: "¡Ocurrio un error, revisa tu usuario y/o contraseña!",
+        timer: 2000,
+        // footer: '<a href="#">Why do I have this issue?</a>',
+      });
+    } else {
+      localStorage.setItem("userInfo", JSON.stringify(response));
+
       Swal.fire({
         position: "top-end",
         icon: "success",
-        title: "¡Registrado correctamente!",
+        title: "¡Ingresaste correctamente!",
         showConfirmButton: false,
-        timer: 2000,
-      });
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "¡Ocurrio un error intentalo nuevamente!",
-        footer: '<a href="#">Why do I have this issue?</a>',
+        timer: 1000,
       });
     }
-
-    console.log("***************", response);
   };
 
   const onSubmit = (data) => {
-    post(`${url}/userslog/register`, { ...data, rol: "user" }, cbResponse);
+    post(`${url}/userslog/auth`, data, cbResponse);
   };
 
   return (
@@ -40,30 +46,9 @@ const LoginForm = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col w-80 border-2 p-5 mt-6 rounded bg-sky-100"
       >
-        <h2 className="font-bold mb-3">REGISTRO DE USUARIO</h2>
+        <h2 className="font-bold mb-3">INICIO DE SESIÓN</h2>
 
-        <label>Nombre completo</label>
-        <input
-          className="border-2 border-gray-500 row-span-2 h-12 mb-5 p-2 rounded"
-          {...register("full_name", { required: true, maxLength: 200 })}
-          placeholder="Nombre completo"
-        />
-
-        <label>Número de teléfono</label>
-        <input
-          className="border-2 border-gray-500 row-span-2 h-12 mb-5 p-2 rounded"
-          {...register("phone", { required: true, maxLength: 20 })}
-          placeholder="Número de teléfono"
-        />
-
-        <label>Dirección</label>
-        <input
-          className="border-2 border-gray-500 row-span-2 h-12 mb-5 p-2 rounded"
-          {...register("address", { required: true, maxLength: 200 })}
-          placeholder="Dirección"
-        />
-
-        <label>Email</label>
+        <label>Correo</label>
         <input
           className="border-2 border-gray-500 row-span-2 h-12 mb-5 p-2 rounded"
           type="email"
