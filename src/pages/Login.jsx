@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 
 import { AuthContext } from "../auth/AuthContext";
 
+import PrimerComponente from "../components/PrimerComponente";
+
 const Login = () => {
   const user = useContext(AuthContext);
 
@@ -11,6 +13,8 @@ const Login = () => {
       <h1 className="text-3xl font-bold underline">
         Hola nuevamente {user.user} desde login
       </h1>
+
+      <PrimerComponente />
     </div>
   );
 };
