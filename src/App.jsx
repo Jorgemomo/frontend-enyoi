@@ -13,13 +13,21 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route element={<Layout />}>
-            <Route path="/home" element={<Home />} />
+            <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/quotes" element={<Quotes />} />
 
             <Route
-              path="/protected"
+              path="/quotes"
+              element={
+                <RequireAuth>
+                  <Quotes />
+                </RequireAuth>
+              }
+            />
+
+            <Route
+              path="/dashboard"
               element={
                 <RequireAuth>
                   <Dashboard />

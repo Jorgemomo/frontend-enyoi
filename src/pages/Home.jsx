@@ -1,6 +1,6 @@
 import React from "react";
 
-import PrimerComponente from "../components/PrimerComponente";
+import PrimerComponente from "../components/PrimerComponente/PrimerComponente";
 
 const Home = () => {
   return (

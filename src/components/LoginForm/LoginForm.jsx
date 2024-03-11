@@ -26,7 +26,7 @@ const LoginForm = () => {
       response === "El password  es incorrecto"
     ) {
       Swal.fire({
-        position: "top-end",
+        // position: "top-end",
         icon: "error",
         title: "Oops...",
         text: "¡Ocurrio un error, revisa tu usuario y/o contraseña!",
@@ -38,7 +38,7 @@ const LoginForm = () => {
       signin(response, cbRedirect);
 
       Swal.fire({
-        position: "top-end",
+        // position: "top-end",
         icon: "success",
         title: "¡Ingresaste correctamente!",
         showConfirmButton: false,

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 
-import { AuthContext } from "../auth/AuthContext";
+import { AuthContext } from "../../auth/AuthContext";
 
 const PrimerComponente = () => {
   const [result, setResult] = useState(0);
@@ -30,7 +30,7 @@ const PrimerComponente = () => {
     }
   }, [operation, result]);
 
-  console.log(user);
+  // console.log(user);
 
   return (
     <>

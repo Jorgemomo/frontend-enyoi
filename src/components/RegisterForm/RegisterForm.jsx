@@ -12,7 +12,7 @@ const RegisterForm = () => {
   const cbResponse = (response) => {
     if (response.message === "User created sucessfully") {
       Swal.fire({
-        position: "top-end",
+        // position: "top-end",
         icon: "success",
         title: "¡Registrado correctamente!",
         showConfirmButton: false,
@@ -23,7 +23,7 @@ const RegisterForm = () => {
         icon: "error",
         title: "Oops...",
         text: "¡Ocurrio un error intentalo nuevamente!",
-        footer: '<a href="#">Why do I have this issue?</a>',
+        // footer: '<a href="#">Why do I have this issue?</a>',
       });
     }
 

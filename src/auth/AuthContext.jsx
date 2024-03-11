@@ -4,7 +4,7 @@ import { fakeAuthProvider } from "./auth";
 export const AuthContext = React.createContext({});
 
 function AuthProvider({ children }) {
-  let [user, setUser] = useState("");
+  let [user, setUser] = useState(localStorage.getItem("userInfo") || false);
 
   let signin = (newUser, callback) => {
     const { name } = newUser;
