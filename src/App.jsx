@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import RequireAuth from "./auth/auth";
 
 import { Home, Login, Register, Dashboard, Quotes } from "./pages";
-import Layout from "./components/layout/Layout";
+import Layout from "./components/Layout/Layout";
 
 function App() {
   return (
