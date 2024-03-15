@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useCallback } from "react";
 import QuotesList from "../components/QuotesList/QuotesList";
 import { get } from "../httprequest/httprequest";
+import QuotesForm from "../components/QuotesForm/QuotesForm";
 
 const Quotes = () => {
   const [quoteList, setQuoteList] = useState();
-  const [gettiingData, setGettingData] = useState(true);
+  const [gettingData, setGettingData] = useState(true);
   const url = process.env.REACT_APP_API_BASE_URL;
 
   const cbResponse = (response) => {
@@ -17,11 +18,12 @@ const Quotes = () => {
   }, [url]);
 
   useEffect(() => {
-    gettiingData && getData();
-  }, [gettiingData, url, getData]);
+    gettingData && getData();
+  }, [gettingData, url, getData]);
 
   return (
     <div>
+      <QuotesForm />
       <QuotesList quoteList={quoteList} />
     </div>
   );

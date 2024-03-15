@@ -27,7 +27,7 @@ const RegisterForm = () => {
       });
     }
 
-    console.log("***************", response);
+    // console.log("***************", response);
   };
 
   const onSubmit = (data) => {

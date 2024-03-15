@@ -9,6 +9,18 @@ export const post = async (url, formData, cbResponse) => {
   }
 };
 
+export const postAuth = async (url, formData, cbResponse) => {
+  const { token } = JSON.parse(localStorage.getItem("userInfo"));
+  try {
+    const { data } = await axios.post(url, formData, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    cbResponse(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const get = async (url, cbResponse) => {
   const { token } = JSON.parse(localStorage.getItem("userInfo"));
   try {
