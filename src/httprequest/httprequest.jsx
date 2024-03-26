@@ -1,5 +1,17 @@
 import axios from "axios";
 
+export const get = async (url, cbResponse) => {
+  const { token } = JSON.parse(localStorage.getItem("userInfo"));
+  try {
+    const { data } = await axios.get(url, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    cbResponse(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const post = async (url, formData, cbResponse) => {
   try {
     const { data } = await axios.post(url, formData);
@@ -21,10 +33,10 @@ export const postAuth = async (url, formData, cbResponse) => {
   }
 };
 
-export const get = async (url, cbResponse) => {
+export const deleteQuote = async (url, cbResponse) => {
   const { token } = JSON.parse(localStorage.getItem("userInfo"));
   try {
-    const { data } = await axios.get(url, {
+    const { data } = await axios.delete(url, {
       headers: { Authorization: `Bearer ${token}` },
     });
     cbResponse(data);

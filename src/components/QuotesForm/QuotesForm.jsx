@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import { postAuth } from "../../httprequest/httprequest";
 
 const QuotesForm = (props) => {
-  const { getData } = props;
+  const { getData, petsList } = props;
   const { register, handleSubmit } = useForm();
 
   const url = process.env.REACT_APP_API_BASE_URL;
@@ -36,6 +36,9 @@ const QuotesForm = (props) => {
   const onSubmit = (data) => {
     postAuth(`${url}/quotes/create`, { ...data, rol: "user" }, cbResponse);
   };
+
+  // console.log(petsList);
+
   return (
     <div className="flex justify-center items-center h-full ml-10">
       <form
@@ -63,9 +66,14 @@ const QuotesForm = (props) => {
         />
         <label>Mascota</label>
         <select {...register("id_pet")}>
-          <option value={1}>Chepeto</option>
+          {petsList.map((pet, index) => (
+            <option key={index} value={pet.id}>
+              {pet.name}
+            </option>
+          ))}
+          {/* <option value={1}>Chepeto</option>
           <option value={2}>Copito</option>
-          <option value={3}>Zoe</option>
+          <option value={3}>Zoe</option> */}
         </select>
         <input
           className="border-2 border-gray-500 row-span-2 h-12 mt-5 mb-5 p-2 cursor-pointer w-28 mx-auto rounded-lg bg-sky-200 shadow-md hover:shadow-indigo-500 "
