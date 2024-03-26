@@ -4,13 +4,13 @@ import { get } from "../httprequest/httprequest";
 import QuotesForm from "../components/QuotesForm/QuotesForm";
 
 const Quotes = () => {
-  const [quoteList, setQuoteList] = useState();
+  const [quotesList, setQuotesList] = useState([]);
   const [gettingData, setGettingData] = useState(true);
   const url = process.env.REACT_APP_API_BASE_URL;
 
   const cbResponse = (response) => {
     setGettingData(false);
-    setQuoteList(response);
+    setQuotesList(response);
   };
 
   const getData = useCallback(() => {
@@ -21,10 +21,12 @@ const Quotes = () => {
     gettingData && getData();
   }, [gettingData, url, getData]);
 
+  // console.log(quotesList);
+
   return (
-    <div>
-      <QuotesForm />
-      <QuotesList quoteList={quoteList} />
+    <div className="w-full flex flex-row justify-around">
+      <QuotesForm getData={getData} />
+      <QuotesList quotesList={quotesList} />
     </div>
   );
 };

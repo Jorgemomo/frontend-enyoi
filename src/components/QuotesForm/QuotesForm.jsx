@@ -4,13 +4,16 @@ import Swal from "sweetalert2";
 
 import { postAuth } from "../../httprequest/httprequest";
 
-const QuotesForm = () => {
+const QuotesForm = (props) => {
+  const { getData } = props;
   const { register, handleSubmit } = useForm();
 
   const url = process.env.REACT_APP_API_BASE_URL;
 
   const cbResponse = (response) => {
     if (response.protocol41 === true) {
+      getData();
+
       Swal.fire({
         // position: "top-end",
         icon: "success",
@@ -27,14 +30,14 @@ const QuotesForm = () => {
       });
     }
 
-    console.log("***************", response);
+    // console.log("***************", response);
   };
 
   const onSubmit = (data) => {
     postAuth(`${url}/quotes/create`, { ...data, rol: "user" }, cbResponse);
   };
   return (
-    <div className="flex justify-center items-center h-full">
+    <div className="flex justify-center items-center h-full ml-10">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col w-80 border-2 p-5 mt-6 rounded bg-sky-100"
@@ -65,7 +68,7 @@ const QuotesForm = () => {
           <option value={3}>Zoe</option>
         </select>
         <input
-          className="border-2 border-gray-500 row-span-2 h-12 mb-5 p-2 cursor-pointer w-28 mx-auto rounded-lg bg-sky-200 shadow-md hover:shadow-indigo-500 "
+          className="border-2 border-gray-500 row-span-2 h-12 mt-5 mb-5 p-2 cursor-pointer w-28 mx-auto rounded-lg bg-sky-200 shadow-md hover:shadow-indigo-500 "
           type="submit"
         />
       </form>
