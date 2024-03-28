@@ -4,7 +4,7 @@ import { get } from "../httprequest/httprequest";
 import UserForm from "../components/UserForm/UserForm";
 import PetsForm from "../components/PetsForm/PetsForm";
 
-const Dashboard = (props) => {
+const Dashboard = () => {
   const [gettingData, setGettingData] = useState(true);
   const [userList, setUserList] = useState([]);
 

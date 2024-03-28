@@ -11,13 +11,13 @@ const PetsForm = (props) => {
   const url = process.env.REACT_APP_API_BASE_URL;
 
   const cbResponse = (response) => {
-    if (response.protocol41 === true) {
+    if (response === "Create pet successfully") {
       getData();
 
       Swal.fire({
         // position: "top-end",
         icon: "success",
-        title: "¡Se registró cita correctamente!",
+        title: "¡Se registró mascota correctamente!",
         showConfirmButton: false,
         timer: 2000,
       });
@@ -34,7 +34,7 @@ const PetsForm = (props) => {
   };
 
   const onSubmit = (data) => {
-    postAuth(`${url}/quotes/create`, { ...data, rol: "user" }, cbResponse);
+    postAuth(`${url}/pets/create`, data, cbResponse);
   };
 
   // console.log(petsList);
@@ -48,10 +48,10 @@ const PetsForm = (props) => {
         <h2 className="font-bold mb-3">CREAR MASCOTA</h2>
 
         <label>Dueño</label>
-        <select {...register("id_pet")}>
-          {userList.map((pet, index) => (
-            <option key={index} value={pet.id}>
-              {pet.full_name}
+        <select {...register("id_user")}>
+          {userList.map((user, index) => (
+            <option key={index} value={user.id}>
+              {user.full_name}
             </option>
           ))}
         </select>
