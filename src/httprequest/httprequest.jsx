@@ -44,3 +44,15 @@ export const deleteService = async (url, cbResponse) => {
     console.log(error);
   }
 };
+
+export const updateUser = async (url, formData, cbResponse) => {
+  const { token } = JSON.parse(localStorage.getItem("userInfo"));
+  try {
+    const { data } = await axios.put(url, formData, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    cbResponse(data);
+  } catch (error) {
+    console.log(error);
+  }
+};

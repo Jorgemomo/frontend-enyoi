@@ -88,7 +88,7 @@ const PetsForm = (props) => {
         />
 
         <input
-          className="border-2 border-gray-500 row-span-2 h-12 mt-5 mb-5 cursor-pointer w-28 mx-auto rounded-lg bg-sky-200 shadow-md hover:shadow-indigo-500 "
+          className="border-2 border-gray-500 row-span-2 h-12 mt-5 mb-5 cursor-pointer w-28 mx-auto rounded-lg bg-sky-200 shadow-md hover:shadow-indigo-500 pointer-events-auto"
           type="submit"
           value="Crear mascota"
         />

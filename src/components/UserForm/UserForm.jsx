@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { post, deleteService } from "../../httprequest/httprequest";
+import { post, deleteService, updateUser } from "../../httprequest/httprequest";
 import Swal from "sweetalert2";
 
 const UserForm = (props) => {
@@ -12,6 +12,8 @@ const UserForm = (props) => {
 
   const cbResponse = (response) => {
     if (response.message === "User created sucessfully") {
+      getData();
+
       Swal.fire({
         // position: "top-end",
         icon: "success",
@@ -46,6 +48,17 @@ const UserForm = (props) => {
         showConfirmButton: false,
         timer: 2000,
       });
+    } else if (response === "User updated successfully") {
+      setUser(null);
+      getData();
+
+      Swal.fire({
+        // position: "top-end",
+        icon: "success",
+        title: "¡Usuario modificado correctamente",
+        showConfirmButton: false,
+        timer: 2000,
+      });
     } else {
       Swal.fire({
         icon: "error",
@@ -62,6 +75,10 @@ const UserForm = (props) => {
 
   const fnOnchange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
+  };
+
+  const fnUpdateUser = () => {
+    updateUser(`${url}/users/update/`, user, cbResponseFromDeleteUser);
   };
 
   // console.log(user);
@@ -86,6 +103,7 @@ const UserForm = (props) => {
             placeholder="Número de teléfono"
             name="phone"
             value={user.phone}
+            onChange={(e) => fnOnchange(e)}
           />
 
           <label>Dirección</label>
@@ -94,6 +112,7 @@ const UserForm = (props) => {
             placeholder="Dirección"
             name="address"
             value={user.address}
+            onChange={(e) => fnOnchange(e)}
           />
 
           <label>Correo</label>
@@ -103,6 +122,7 @@ const UserForm = (props) => {
             placeholder="Correo electrónico"
             name="email"
             value={user.email}
+            onChange={(e) => fnOnchange(e)}
           />
 
           <label>Contraseña</label>
@@ -112,11 +132,13 @@ const UserForm = (props) => {
             placeholder="Contraseña"
             name="password"
             value={user.password}
+            onChange={(e) => fnOnchange(e)}
           />
           <input
-            className="border-2 border-gray-500 row-span-2 h-12 mb-5 cursor-pointer w-36 mx-auto rounded-lg bg-sky-200 shadow-md hover:shadow-indigo-500 "
-            type="submit"
+            className="border-2 border-gray-500 row-span-2 h-12 mb-5 cursor-pointer w-36 mx-auto rounded-lg bg-sky-200 shadow-md hover:shadow-indigo-500 pointer-events-auto"
+            type="button"
             value="Actualizar usuario"
+            onClick={fnUpdateUser}
           />
         </form>
       ) : (
