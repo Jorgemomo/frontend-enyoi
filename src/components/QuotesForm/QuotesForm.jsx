@@ -30,7 +30,7 @@ const QuotesForm = (props) => {
       });
     }
 
-    // console.log("***************", response);
+    console.log("***************", response);
   };
 
   const onSubmit = (data) => {
@@ -46,7 +46,7 @@ const QuotesForm = (props) => {
         className="flex flex-col w-80 border-2 p-5 mt-6 rounded bg-sky-100"
       >
         <h2 className="font-bold mb-3">CREAR CITA</h2>
-        <label></label>Fecha
+        <label>Fecha</label>
         <input
           className="border-2 border-gray-500 row-span-2 h-12 mb-5 p-2 rounded"
           {...register("date", { required: true, maxLength: 200 })}
@@ -71,9 +71,6 @@ const QuotesForm = (props) => {
               {pet.name}
             </option>
           ))}
-          {/* <option value={1}>Chepeto</option>
-          <option value={2}>Copito</option>
-          <option value={3}>Zoe</option> */}
         </select>
         <input
           className="border-2 border-gray-500 row-span-2 h-12 mt-5 mb-5 p-2 cursor-pointer w-28 mx-auto rounded-lg bg-sky-200 shadow-md hover:shadow-indigo-500 "

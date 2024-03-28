@@ -1,5 +1,5 @@
 import React from "react";
-import { deleteQuote } from "../../httprequest/httprequest";
+import { deleteService } from "../../httprequest/httprequest";
 import Swal from "sweetalert2";
 
 const QuotesList = (props) => {
@@ -31,12 +31,12 @@ const QuotesList = (props) => {
   };
 
   const fnDeleteQuote = (id) => {
-    deleteQuote(`${url}/quotes/delete/${id}`, cbResponse);
+    deleteService(`${url}/quotes/delete/${id}`, cbResponse);
   };
 
   return (
     <div className="ml-8 w-3/4">
-      <h2 className="font-bold mb-7">CITAS PENDIENTES</h2>
+      <h2 className="font-bold mb-7 mt-3">CITAS PENDIENTES</h2>
       <div className="w-full mt-6 flex flex-wrap">
         {quotesList.length &&
           quotesList.map((quote, index) => (

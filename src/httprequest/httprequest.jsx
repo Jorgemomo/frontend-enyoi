@@ -33,7 +33,7 @@ export const postAuth = async (url, formData, cbResponse) => {
   }
 };
 
-export const deleteQuote = async (url, cbResponse) => {
+export const deleteService = async (url, cbResponse) => {
   const { token } = JSON.parse(localStorage.getItem("userInfo"));
   try {
     const { data } = await axios.delete(url, {
