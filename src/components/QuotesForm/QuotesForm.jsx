@@ -30,7 +30,7 @@ const QuotesForm = (props) => {
       });
     }
 
-    console.log("***************", response);
+    // console.log("***************", response);
   };
 
   const onSubmit = (data) => {
